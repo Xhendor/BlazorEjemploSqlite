@@ -47,11 +47,13 @@ namespace BlazorApp1.Server.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async void delete(Product id)
+        public async void delete(int id)
         {
-            Product product = await service.GetProductAsync(id);
+            Product p = new Product();
+            p.Id = id;
+            p = await service.GetProductAsync(p);
 
-            await service.DeleteProductAsync(product);
+            await service.DeleteProductAsync(p);
         }
     }
 }
